@@ -252,9 +252,9 @@ KnxHelper.GetData = function (dataLength, apdu /*buffer*/) {
             //TODO: originally, here is utf code to char convert (String.fromCharCode).
             return parseInt(apdu[2]).toString();
         default:
-            var data = new Buffer(apdu.length);
+            var data = new Buffer(apdu.length - 2);
             //TODO: originally, here is utf code to char convert (String.fromCharCode).
-            apdu[i].copy(data);
+            apdu.copy(data, 0, 2);
             return data;
     }
 }
