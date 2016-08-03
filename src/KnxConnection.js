@@ -5,6 +5,7 @@
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var InvalidKnxDataException = require('./InvalidKnxDataException');
+var Translator = require('./Translator/index.js');
 
 function isInt(n) {
     return Number(n) === n && n % 1 === 0;
@@ -142,7 +143,7 @@ KnxConnection.prototype.RequestStatus = function (address, callback) {
 /// <param name="data">Data to convert</param>
 /// <returns></returns>
 KnxConnection.prototype.FromDataPoint = function (type, /*buffer*/data) {
-    return DataPointTranslator.Instance.FromDataPoint(type, data);
+    return Translator(type).FromDataPoint(data);
 }
 
 /// <summary>
@@ -153,7 +154,7 @@ KnxConnection.prototype.FromDataPoint = function (type, /*buffer*/data) {
 /// <param name="value">Value to convert</param>
 /// <returns></returns>
 KnxConnection.prototype.ToDataPoint = function (type, value) {
-    return DataPointTranslator.Instance.ToDataPoint(type, value);
+    return Translator(type).ToDataPoint(data);
 }
 
 module.exports = KnxConnection;
