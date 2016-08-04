@@ -14,6 +14,9 @@ function TranslatorFactory(type) {
     var t;
 
     switch(type) {
+        case '5.001':
+            t = new percentTranslator();
+            break;
         case '9.001':
             t = new celsiusTranslator();
             break;
@@ -22,9 +25,6 @@ function TranslatorFactory(type) {
             break;
         case '11.001':
             t = new dateTranslator();
-            break;
-        case '5.001':
-            t = new percentTranslator();
             break;
         case '19.001':
             t = new dateTimeTranslator();

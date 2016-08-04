@@ -11,7 +11,7 @@ DateTimeTranslator.prototype.ToDataPoint = function(value) {
 
     var buf = new Buffer(8);
 
-    buf[0] = value.getYear() - 1900;
+    buf[0] = value.getFullYear() - 1900;
     buf[1] = value.getMonth();
     buf[2] = value.getDate();
     buf[3] = ((value.getDay() != 0 ? value.getDay() : 7) << 5) + (value.getHours() & 31);
