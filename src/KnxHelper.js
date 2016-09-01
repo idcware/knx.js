@@ -242,22 +242,20 @@ KnxHelper.GetKnxDestinationAddressType = function (control_field_2) {
 // +                            B  Y  T  E    2                            ||       B Y T E  3
 // +-----------------------------------------------------------------------++-------------....
 KnxHelper.GetData = function (dataLength, apdu /*buffer*/) {
+    var data;
     switch (dataLength) {
         case 0:
-            return '';
+            return new Buffer(0);
         case 1:
-            //TODO: originally, here is utf code to char convert (String.fromCharCode).
-            return parseInt(0x3F & apdu[1], 10).toString();
-        case 2:
-            //TODO: originally, here is utf code to char convert (String.fromCharCode).
-            return parseInt(apdu[2]).toString();
+            data = new Buffer(1);
+            data[0] = 0x3F & apdu[1];
+            return data;
         default:
-            var data = new Buffer(apdu.length - 2);
-            //TODO: originally, here is utf code to char convert (String.fromCharCode).
+            data = new Buffer(apdu.length - 2);
             apdu.copy(data, 0, 2);
             return data;
     }
-}
+};
 
 KnxHelper.GetDataLength = function (/*buffer*/ data) {
     if (data.length <= 0)

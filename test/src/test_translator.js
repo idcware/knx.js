@@ -137,7 +137,7 @@ describe('knx translator percent test suite', function() {
                 data: new Buffer([0]),
                 rv: 0
             },{
-                data: new Buffer([255]),
+                data: new Buffer([0xff]),
                 rv: 100
             }
         ];
